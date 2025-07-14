@@ -16,8 +16,8 @@ INSERT INTO book (id, title, publication_year) VALUES (5, 'Good Omens: The Nice 
 
 
 -- Author-Book Relationships
-INSERT INTO book_author (author_id, book_id) VALUES (1, 1); 
-INSERT INTO book_author (author_id, book_id) VALUES (2, 2); 
-INSERT INTO book_author (author_id, book_id) VALUES (2, 3); 
-INSERT INTO book_author (author_id, book_id) VALUES (4, 4); 
-INSERT INTO book_author (author_id, book_id) VALUES (5, 4); 
+INSERT INTO book_authors (author_id, book_id) VALUES (1, 1); 
+INSERT INTO book_authors (author_id, book_id) VALUES (2, 2); 
+INSERT INTO book_authors (author_id, book_id) VALUES (2, 3); 
+INSERT INTO book_authors (author_id, book_id) VALUES (4, 4); 
+INSERT INTO book_authors (author_id, book_id) VALUES (5, 4); 
