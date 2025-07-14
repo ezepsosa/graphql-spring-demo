@@ -15,7 +15,13 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public List<Book> findAll(){
+    public List<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    // This could be better implemented if an error would be thrown and processed in
+    // the parent method
+    public Book findById(Long id) {
+        return bookRepository.findById(id).orElse(null);
     }
 }
