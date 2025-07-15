@@ -7,7 +7,8 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.graphqltesting.demo.dto.InsertBook;
+import com.graphqltesting.demo.dto.request.BookCreateDTO;
+import com.graphqltesting.demo.dto.response.BookResponseDTO;
 import com.graphqltesting.demo.models.Book;
 import com.graphqltesting.demo.services.BookService;
 import com.graphqltesting.demo.services.LibraryService;
@@ -26,8 +27,13 @@ public class BookResolver {
         return bookService.findAll();
     }
 
-    @MutationMapping
-    public Book createBook(@Argument("input") InsertBook insertBook){
+    @MutationMapping(name="createBook")
+    public BookResponseDTO save(@Argument("insertBook") BookCreateDTO insertBook){
         return libraryService.saveBook(insertBook);
     }
+
+/*    @MutationMapping
+    public Book update(@Argument("updateBook") BookCreateDTO insertBook){
+        return libraryService.updateBook(insertBook);
+    } */
 }

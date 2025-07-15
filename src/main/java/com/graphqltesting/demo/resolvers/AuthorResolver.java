@@ -6,8 +6,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
-import com.graphqltesting.demo.models.Author;
-import com.graphqltesting.demo.models.Book;
+import com.graphqltesting.demo.dto.response.AuthorResponseDTO;
+import com.graphqltesting.demo.dto.response.BookResponseDTO;
 import com.graphqltesting.demo.services.AuthorService;
 import com.graphqltesting.demo.services.LibraryService;
 
@@ -21,12 +21,12 @@ public class AuthorResolver {
     private final LibraryService libraryService;
     
     @QueryMapping(name="authors")
-    public List<Author> findAll(){
+    public List<AuthorResponseDTO> findAll(){
         return authorService.findAll();
     }
 
     @SchemaMapping(field="authors")
-    public List<Author> findByBookId(Book book){
-        return libraryService.findAuthorByBookId(book.getId());
+    public List<AuthorResponseDTO> findByBookId(BookResponseDTO book){
+        return libraryService.findAuthorByBookId(book.id());
     }
 }

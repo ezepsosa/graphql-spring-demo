@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.graphqltesting.demo.dto.InsertBook;
+import com.graphqltesting.demo.dto.request.BookCreateDTO;
 import com.graphqltesting.demo.exceptions.ResourceNotFoundException;
 import com.graphqltesting.demo.models.Author;
 import com.graphqltesting.demo.models.Book;
