@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import com.graphqltesting.demo.models.Author;
 import com.graphqltesting.demo.models.Book;
 import com.graphqltesting.demo.services.AuthorService;
+import com.graphqltesting.demo.services.LibraryService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthorResolver {
 
     private final AuthorService authorService;
-
+    private final LibraryService libraryService;
     
     @QueryMapping(name="authors")
     public List<Author> findAll(){
@@ -26,6 +27,6 @@ public class AuthorResolver {
 
     @SchemaMapping(field="authors")
     public List<Author> findByBookId(Book book){
-        return authorService.findByBookId(book.getId());
+        return libraryService.findAuthorByBookId(book.getId());
     }
 }

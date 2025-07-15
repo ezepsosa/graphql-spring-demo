@@ -33,4 +33,10 @@ public class Book {
     @ManyToMany(mappedBy="books")
     private List<Author> authors;
 
+    public Book(String title, int publicationYear, List<Author> authors){
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.authors = authors;
+    }
+
 }
