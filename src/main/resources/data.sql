@@ -1,18 +1,18 @@
 -- Authors Insertions
-INSERT INTO author (id, name, nationality) VALUES (1, 'J.R.R. Tolkien', 'British');
-INSERT INTO author (id, name, nationality) VALUES (2, 'George Orwell', 'British');
-INSERT INTO author (id, name, nationality) VALUES (3, 'Jane Austen', 'British');
-INSERT INTO author (id, name, nationality) VALUES (4, 'Terry Pratchett', 'British');
-INSERT INTO author (id, name, nationality) VALUES (5, 'Neil Gaiman', 'British');
+INSERT INTO author (name, nationality) VALUES ('J.R.R. Tolkien', 'British');
+INSERT INTO author (name, nationality) VALUES ('George Orwell', 'British');
+INSERT INTO author (name, nationality) VALUES ('Jane Austen', 'British');
+INSERT INTO author (name, nationality) VALUES ('Terry Pratchett', 'British');
+INSERT INTO author (name, nationality) VALUES ('Neil Gaiman', 'British');
 
 
 
 -- Book Insertions
-INSERT INTO book (id, title, publication_year) VALUES (1, 'The Hobbit', 1937);
-INSERT INTO book (id, title, publication_year) VALUES (2, '1984', 1949);
-INSERT INTO book (id, title, publication_year) VALUES (3, 'Animal Farm', 1945);
-INSERT INTO book (id, title, publication_year) VALUES (4, 'Pride and Prejudice', 1813);
-INSERT INTO book (id, title, publication_year) VALUES (5, 'Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch', 1990);
+INSERT INTO book (title, publication_year) VALUES ('The Hobbit', 1937);
+INSERT INTO book (title, publication_year) VALUES ('1984', 1949);
+INSERT INTO book (title, publication_year) VALUES ('Animal Farm', 1945);
+INSERT INTO book (title, publication_year) VALUES ('Pride and Prejudice', 1813);
+INSERT INTO book (title, publication_year) VALUES ('Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch', 1990);
 
 
 -- Author-Book Relationships
