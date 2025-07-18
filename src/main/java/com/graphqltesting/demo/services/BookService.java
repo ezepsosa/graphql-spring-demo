@@ -40,7 +40,7 @@ public class BookService {
     @Transactional
     public Boolean delete(Long id) {
         Book bookToDelete = findById(id).orElseThrow(() -> new ResourceNotFoundException("Book", id));
-        bookToDelete.getAuthors().stream().forEach(author -> author.getBooks().remove(author.getBooks().indexOf(bookToDelete)));
+        bookToDelete.getAuthors().stream().forEach(author -> author.getBooks().remove(bookToDelete));
         save(bookToDelete);
         entityManager.flush(); 
         bookRepository.deleteById(id);

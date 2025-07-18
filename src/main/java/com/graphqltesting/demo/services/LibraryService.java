@@ -1,6 +1,7 @@
 package com.graphqltesting.demo.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -40,14 +41,14 @@ public class LibraryService {
     public Book updateBook(BookUpdateDTO bookUpdateDTO) {
         Book originalBook = bookService.findById(bookUpdateDTO.id())
                 .orElseThrow(() -> new ResourceNotFoundException("Book", bookUpdateDTO.id()));
-        if (!bookUpdateDTO.title().equals(originalBook.getTitle())) {
+        if (!Objects.equals(bookUpdateDTO.title(), originalBook.getTitle())) {
             originalBook.setTitle(bookUpdateDTO.title());
         }
-        if (bookUpdateDTO.publicationYear() - originalBook.getPublicationYear() != 0) {
+        if (bookUpdateDTO.publicationYear() != originalBook.getPublicationYear()) {
             originalBook.setPublicationYear(bookUpdateDTO.publicationYear());
 
         }
-        List<Long> originalAuthorsIds = originalBook.getAuthors().stream().map(author -> author.getId()).toList();
+        List<Long> originalAuthorsIds = originalBook.getAuthors().stream().map(Author::getId).toList();
         List<Long> updateAuthorsIds = bookUpdateDTO.authorIds();
         if (!(originalAuthorsIds.containsAll(updateAuthorsIds) && updateAuthorsIds.containsAll(originalAuthorsIds))) {
             List<Author> updateAuthors = bookUpdateDTO.authorIds().stream()
