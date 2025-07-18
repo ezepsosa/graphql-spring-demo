@@ -44,14 +44,14 @@ public class LibraryService {
         if (!Objects.equals(bookUpdateDTO.title(), originalBook.getTitle())) {
             originalBook.setTitle(bookUpdateDTO.title());
         }
-        if (bookUpdateDTO.publicationYear() != originalBook.getPublicationYear()) {
+        if (!Objects.equals(bookUpdateDTO.publicationYear(), originalBook.getPublicationYear())) {
             originalBook.setPublicationYear(bookUpdateDTO.publicationYear());
 
         }
         List<Long> originalAuthorsIds = originalBook.getAuthors().stream().map(Author::getId).toList();
-        List<Long> updateAuthorsIds = bookUpdateDTO.authorIds();
+        List<Long> updateAuthorsIds = Objects.requireNonNullElse(bookUpdateDTO.authorIds(), List.of());
         if (!(originalAuthorsIds.containsAll(updateAuthorsIds) && updateAuthorsIds.containsAll(originalAuthorsIds))) {
-            List<Author> updateAuthors = bookUpdateDTO.authorIds().stream()
+            List<Author> updateAuthors = updateAuthorsIds.stream()
                     .map(authorService::findByIdEntity).collect(Collectors.toList());
             if (!updateAuthors.isEmpty()) {
                 originalBook.setAuthors(updateAuthors);

@@ -18,7 +18,7 @@ public class BookMapper {
     }
 
     public static BookResponseDTO toDTO(Book book){
-        List<AuthorResponseDTO> authorResponse = book.getAuthors().stream().map(author -> AuthorMapper.toDTO(author)).toList();
+        List<AuthorResponseDTO> authorResponse = book.getAuthors().stream().map(AuthorMapper::toDTO).toList();
         return new BookResponseDTO(book.getId(), book.getTitle(), book.getPublicationYear(), authorResponse);
 
     }
