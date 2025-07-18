@@ -1,6 +1,6 @@
 package com.graphqltesting.demo.models;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -38,6 +38,6 @@ public class Author {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
-        this.books = Arrays.asList();
+        this.books = new ArrayList<>();
     }
 }

@@ -2,22 +2,24 @@ package com.graphqltesting.demo.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.graphqltesting.demo.dto.request.BookCreateDTO;
 import com.graphqltesting.demo.exceptions.ResourceNotFoundException;
-import com.graphqltesting.demo.models.Author;
 import com.graphqltesting.demo.models.Book;
 import com.graphqltesting.demo.repositories.BookRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class BookService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     private final BookRepository bookRepository;
 
     public List<Book> findAll() {
@@ -30,7 +32,19 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public void save(Book book){
+    @Transactional
+    public void save(Book book) {
         bookRepository.save(book);
     }
+
+    @Transactional
+    public Boolean delete(Long id) {
+        Book bookToDelete = findById(id).orElseThrow(() -> new ResourceNotFoundException("Book", id));
+        bookToDelete.getAuthors().stream().forEach(author -> author.getBooks().remove(author.getBooks().indexOf(bookToDelete)));
+        save(bookToDelete);
+        entityManager.flush(); 
+        bookRepository.deleteById(id);
+        return !bookRepository.existsById(id);
+    }
+
 }

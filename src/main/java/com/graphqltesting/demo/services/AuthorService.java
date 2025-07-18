@@ -1,7 +1,6 @@
 package com.graphqltesting.demo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,10 +22,15 @@ public class AuthorService {
         return authorRepository.findAll().stream().map(AuthorMapper::toDTO).toList();
     }
 
-    public Optional<AuthorResponseDTO> findById(Long id) {
-        Author author = authorRepository.findById(id)
+    public AuthorResponseDTO findById(Long id) {
+        Author author = findByIdEntity(id);
+        return AuthorMapper.toDTO(author);
+    }
+
+    protected Author findByIdEntity(Long id){
+        return authorRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Author", id));
-        return Optional.of(AuthorMapper.toDTO(author));
+        
     }
 
 }

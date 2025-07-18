@@ -23,6 +23,17 @@ input CreateBookInput {
   authorIds: [ID]!
 }
 
+input UpdateBookInput {
+  id: ID!
+  title: String
+  publicationYear: Int
+  authorIds: [ID]
+}
+
 type Mutation {
   createBook(insertBook: CreateBookInput!): Book
+  updateBook(updateBook: UpdateBookInput!): Book
+  deleteBook(id: ID!): Boolean
+
 }
+
